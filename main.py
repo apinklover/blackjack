@@ -8,6 +8,9 @@ player_hand = []
 split_hand = []
 first_hit = False
 split = False
+dealer_sum = 0
+player_sum = 0
+split_sum = 0
 
 
 def generate_deck(num):
@@ -24,6 +27,8 @@ for i in range(2):
     dealer_hand.append(deck.pop())
     player_hand.append(deck.pop())
 
+print(deck, dealer_hand, player_hand)
+
 
 def hit():
     global split
@@ -36,8 +41,19 @@ def hit():
         split_hand.append(deck.pop())
 
 
-def stand(): # WIP!
-    pass
+def stand():
+    global dealer_sum
+    for dcard in dealer_hand:
+        if dcard.substring(1) in ["J", "Q", "K"]:
+            dealer_sum += 10
+        elif dcard.substring(1) in [2, 3, 4, 5, 6, 7, 8, 9, 10]:
+            dealer_sum += dcard.substring(1)
+        else:
+            pass
+            # TODO: Sort Hands by numeric value of cards and calculate
+
+    if not split:
+        pass
 
 
 def double_down():
@@ -57,9 +73,9 @@ def split():
         print("You can no longer split; you have already hit.")
         
 
-def insurance(): # WIP!
+def insurance():  # WIP!
     pass
 
 
-def surrender(): # WIP!
+def surrender():  # WIP!
     pass
